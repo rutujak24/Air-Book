@@ -1,0 +1,34 @@
+** Don't forget to comment your code, it helps us understand it faster **
+
+
+
+Big ToDo
+---------
+1). Find and fix bugs
+2). Make code more efficient
+3). Transaction
+4). Archiving
+
+
+
+Little ToDo
+-----------
+
+
+
+
+
+Completed
+----------
+1). (DONE - Luong) Inform passenger of what their pasID is after booking a flight.
+2). (DONE - Arjay) Add main menu, user will select whether they are regular or admin user. Then Admin/User menu pops up depending on their choice.
+3). (DONE - Arjay) Add gui for admin menu
+4). (DONE - Arjay) Add gui for all admin menu choices
+5). (DONE - Luong) Add a function to check if pasID is in Passenger for book and cancel a flight so that pasID is unique
+6). (DONE - Luong) User won't be able to book a flight without giving both name and age
+7). (DONE - Luong) Add functionality to admin - pilots
+8). (DONE - Arjay) Add functionality to admin - planes
+9). (DONE - Arjay) Increase program efficiency
+10) (DONE - Luong) Add functionality to admin - passengers
+11) (DONE - Luong) Add functionality to admin - seats
+12).(DONE - Arjay) Add functionality to admin- flight

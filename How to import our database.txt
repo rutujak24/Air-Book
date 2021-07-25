@@ -1,0 +1,3 @@
+In MySQL Workbench, click on data import/restore in the navigator window.
+
+Set the path to the Database folder inside this github repo, start import. Database should be imported.

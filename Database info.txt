@@ -1,0 +1,80 @@
+// Here is info about our database, reference this sheet
+
+CREATE TABLE Pilot(
+	pName CHAR(30),
+	pilotID INT PRIMARY KEY,
+	yrExp INT
+	CHECK(pilotID > 0 AND pilotID <= 99)
+);
+
+
+CREATE TABLE Plane(
+	planeID INT PRIMARY KEY,
+	age INT,
+	CHECK(planeID >= 1000 AND planeID <= 9999)
+);
+
+
+CREATE TABLE Flight(
+	flightID INT PRIMARY KEY,
+	destination VARCHAR(255),
+	depDate DATE,
+	depTime TIME,
+	planeID INT REFERENCES Plane(planeID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	pilotID INT REFERENCES Pilot(pilotID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	gateID char(4) CHECK (gateID LIKE 'A%')
+);
+		
+
+CREATE TABLE Passenger(
+	name char(30),
+	age INT,
+	flightID INT REFERENCES Flight(flightID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	firstClass BOOLEAN,
+	seatID char(3) REFERENCES Seat(SeatID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	pasID char(4) CHECK (pasID LIKE '%C')
+);
+
+	
+CREATE TABLE Seat(
+	sID char(3) PRIMARY KEY,
+	row char(1),
+	seatNo INT,
+	taken BOOLEAN,
+	planeID INT REFERENCES Plane(planeID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
+
+
+
+
+//Triggers
+
+//This trigger will update the seat relation to make the taken boolean value true when a seat is filled
+delimiter $$
+
+CREATE TRIGGER updateSeat
+AFTER INSERT ON Passenger
+FOR EACH ROW
+BEGIN 
+UPDATE Seat SET Seat.taken = true
+WHERE Seat.sID = new.seatID;
+
+END$$
+
+
+CREATE TRIGGER updateSeatfalse
+BEFORE DELETE ON Passenger
+FOR EACH ROW
+BEGIN
+UPDATE Seat SET taken = false WHERE sID = old.seatID
+END;
